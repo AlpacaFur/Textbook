@@ -1,0 +1,11 @@
+{
+  "name":"Mongol Influence on the Old World",
+  "content": [
+    {"type":"header", "content":"Mongol Influence on the Old World"},
+    {"type":"subheader", "content":"Mongol Impact on Trade"},
+    {"type":"paragraph","content":"The Mongol Empire had a large influence over trade within its domain. The Mongols protected land trade on major routes such as the Silk Road. As a result, when the Mongol Empire collapsed, so did land trade. Bandits ran rampant and trade over land became all but impossible. As a result, many traders had to resort to trade over sea instead of over land to bypass the bandits."},
+    {"type":"paragraph","content":"sample paragraph 1"},
+    {"type":"image","content":"Image caption", "url":"sample_url", "source":"sample_credit", "source_url":false}
+    {"type":"paragraph","content":"sample paragraph 2"},
+  ]
+}

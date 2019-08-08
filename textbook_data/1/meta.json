@@ -1,0 +1,9 @@
+{
+  "name":"AP European History",
+  "id":1,
+  "chapters": {
+    "0":"preface",
+    "1":"chapter_1"
+  },
+  "public":false
+}

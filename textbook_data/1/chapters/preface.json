@@ -1,0 +1,9 @@
+{
+  "name":"Preface",
+  "content": [
+    {"type":"header", "content":"Preface"},
+    {"type":"paragraph", "content":"Welcome to this sample book created for the Textbook app to compete in the Congressional App Challenge. While this textbook may not currently be very useful to student trying to learn the subject, it will become more helpful as more content is added."},
+    {"type":"image","content":"Image visualizing the differece between this book and a normal textbook.", "source":"Luke Taylor", "source-url":false, "url":"sample_url"},
+    {"type":"paragraph", "content":"And with that, this preface is over."}
+  ]
+}
