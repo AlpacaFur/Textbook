@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/AlpacaFur/Textbook#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "glob": "^7.1.4",
+    "sass": "^1.22.9"
   }
 }
