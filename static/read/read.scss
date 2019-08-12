@@ -5,20 +5,19 @@ body {
 .container {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  background-color: #ddd;
-  >* {
-    background-color: #bbb;
-  }
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr;
+
   #left-sidebar, #right-sidebar {
     box-shadow: inset 0px 0px 10px 0px #000000BF;
-    flex:2;
+    background-color: #ddd;
   }
+
   #left-sidebar {
 
   }
+
   #content {
-    flex:5;
     background-color: #eee;
     padding: 0px 30px;
     font-family: "Avenir Next","Georgia", serif;
@@ -31,20 +30,21 @@ body {
       margin: 0;
       padding: 0.6em 0;
       background-color: #eee;
-      box-shadow: -1px 1px 5px 0px #000000bf;
-      width: calc(100%);
     }
     p {
       font-size: 23px;
       color:#bbbbbb77;
+
       &:first-of-type {
         margin-top: 0;
       }
+
       span {
         color:#bbbbbb77;
         font-weight:300;
         transition: color 0.5s ease, font-weight 0.5s ease;
       }
+
       span.selected-text {
         display: block;
         margin:20px 0px;
@@ -52,9 +52,12 @@ body {
         font-weight:300;
         opacity: 1;
       }
+      
     }
   }
+
   #right-sidebar {
 
   }
+
 }

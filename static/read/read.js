@@ -97,7 +97,6 @@ class ReadApp extends Element {
 
   }
 }
-const p = string => string.split(".");
 
 const theme = (action = {}, state = "light") => {
   switch (action.type) {
