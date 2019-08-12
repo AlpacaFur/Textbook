@@ -11,6 +11,7 @@ class Store {
     })
     this.state = state;
   }
+
   dispatch(action) {
     Object.entries(this.reducers).find(([prop, reducer])=>{
       let oldState = this.state;
@@ -23,82 +24,29 @@ class Store {
       return false;
     })
   }
+
   _unsubscribe(property, index) {
     delete this.propSubscribers[property][index];
   }
+
   subscribe(callback) {
     let length = this.subscribers.push(callback);
     return ()=>{this._unsubscribe(property, length-1)};
   }
+
   getState() {
     return {...this.state};
   }
+
   connect(instance, stateNameMap) {
     instance.state = stateNameMap(this.state);
-    let unsubscribe = this.subscribe((state)=>{
+    return this.subscribe((state)=>{
       instance.state = stateNameMap(this.state);
     })
   }
 }
 
-const stateNameMap = (state)=>({
-  theme: state.theme,
-})
-
-class Element {
-  constructor(element) {
-    this._state = {};
-    this.element = this.resolveElement(element);
-
-  }
-  set state(value) {
-    if (this._shallowCompare(this._state, value)) {
-      this.render();
-    }
-  }
-  render() {
-    console.warn("All classes should override the render method.")
-  }
-  resolveElement(element) {
-    if (element.tagName) return element;
-    else {
-      return document.getElementById("element")
-    }
-  }
-  _shallowCompare(oldObj, newObj) {
-    return Object.entries(newObj).every(([prop, value])=>{
-      return oldObj[prop] === newObj[prop];
-    })
-  }
-}
-
-class Content extends Element {
-  constructor(element) {
-    super(element);
-  }
-  setData(data) {
-    this.data = data;
-    this.position = 0;
-  }
-  render() {
-
-  }
-  forward() {
-
-  }
-  backward() {
-
-  }
-}
-
-class ReadApp extends Element {
-  constructor(element) {
-    super(element);
-
-  }
-}
-
-const theme = (action = {}, state = "light") => {
+const themeReducer = (action = {}, state = "light") => {
   switch (action.type) {
     case "LIGHT_MODE":
       return "light";
@@ -111,4 +59,62 @@ const theme = (action = {}, state = "light") => {
   }
 }
 
-const store = new Store({theme:theme});
+const store = new Store({theme:themeReducer});
+
+const stateNameMap = (state)=>({
+  theme: state.theme,
+})
+
+class Element {
+  constructor(element) {
+    this._state = {};
+    this.element = this.resolveElement(element);
+  }
+
+  set state(value) {
+    if (this._shallowCompare(this._state, value)) {
+      this.render();
+    }
+  }
+
+  render() {
+    console.warn("All classes should override the render method.")
+  }
+
+  resolveElement(element) {
+    if (element.tagName) return element;
+    else {
+      return document.getElementById("element")
+    }
+  }
+
+  _shallowCompare(oldObj, newObj) {
+    return Object.entries(newObj).every(([prop, value])=>{
+      return oldObj[prop] === newObj[prop];
+    })
+  }
+}
+
+class Content extends Element {
+  constructor(element) {
+    super(element);
+  }
+
+  render() {
+    
+  }
+
+  forward() {
+
+  }
+
+  backward() {
+
+  }
+}
+
+let bodyState = {set state({theme}) {
+  document.body.classList.add(theme);
+  document.body.classList.remove(theme === "light" ? "dark" : "light");
+}}
+store.connect(bodyState, stateNameMap)
