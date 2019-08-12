@@ -20,10 +20,7 @@ function generate(options) {
 
 function generateCSS(filePath) {
   sass.render({file:filePath}, (err, data)=>{
-    if (err && err.formatted.endsWith("no such file or directory")) {
-      return;
-    }
-    if (err) throw err;
+    if (err) return;
     let target = filePath.replace(".scss", ".css")
     fs.writeFileSync(target, data.css)
   })
