@@ -2,6 +2,10 @@ const sass = require("sass")
 const fs = require("fs")
 const glob = require("glob")
 
+function warn(text) {
+  return `\x1b[33m${text}\x1b[0m`;
+}
+
 function generate(options) {
   let log = options && options.log;
   let files = glob.sync("static/**/*.scss", {});
@@ -20,7 +24,10 @@ function generate(options) {
 
 function generateCSS(filePath) {
   sass.render({file:filePath}, (err, data)=>{
-    if (err) return;
+    if (err) {
+      console.log(warn(err.formatted));
+      return;
+    };
     let target = filePath.replace(".scss", ".css")
     fs.writeFileSync(target, data.css)
   })
