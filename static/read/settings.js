@@ -62,18 +62,12 @@ class Settings {
 
 const settingsManifest = {
   display: {
-    theme: "dark",
-  },
-  test: {
-    test1: true,
-    test2: false,
-    test3: 0,
-    test4: 1,
+    theme: "auto",
   },
 }
 
 let settings = new Settings(settingsManifest);
 
-let stop = settings.listen("display.theme", (value)=>{
-  console.log("theme", value)
+settings.listen("display.theme", (value)=>{
+  document.body.setAttribute("data-theme", value)
 })

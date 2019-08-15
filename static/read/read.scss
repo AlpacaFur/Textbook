@@ -2,14 +2,7 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: "Avenir Next", sans-serif;
-  &[data-theme=light], &[data-theme] {
-    --content-background: #eee;
-    --content-title: #666;
-    --content-unemphasized: #aaaaaa77;
-    --content-emphasized: #444;
-    --sidebar-background: #ddd;
-  }
-  &[data-theme=auto] {
+  &[data-theme=auto], &[data-theme] {
     --content-background: #eee;
     --content-title: #666;
     --content-unemphasized: #aaaaaa77;
@@ -22,6 +15,20 @@ body {
       --content-emphasized: #ddd;
       --sidebar-background: #111;
     }
+  }
+  &[data-theme=light] {
+    --content-background: #eee;
+    --content-title: #666;
+    --content-unemphasized: #aaaaaa77;
+    --content-emphasized: #444;
+    --sidebar-background: #ddd;
+  }
+  &[data-theme=dark] {
+    --content-background: #333;
+    --content-title: #aaa;
+    --content-unemphasized: #66666677;
+    --content-emphasized: #ddd;
+    --sidebar-background: #111;
   }
 }
 .container {
@@ -101,12 +108,11 @@ body {
       margin: 0.3em 0;
       font-size: 18px;
       margin-left: 25px;
-      transition-property: color, text-decoration, font-weight;
+      transition-property: color;
       transition-duration: 0.35s;
       transition-timing-function: ease;
       cursor:pointer;
       &:hover {
-        font-weight: 600;
         text-decoration: underline;
       }
     }
