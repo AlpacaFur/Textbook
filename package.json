@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "watch": "scss-watch watch",
+    "build": "scss-watch build"
   },
   "repository": {
     "type": "git",
@@ -18,8 +20,7 @@
   "homepage": "https://github.com/AlpacaFur/Textbook#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "glob": "^7.1.4",
-    "sass": "^1.22.9"
+    "scss-watch": "git+https://github.com/AlpacaFur/scss-watch.git"
   },
   "devDependencies": {}
 }

@@ -1,7 +1,5 @@
 const express = require("express");
 let app = express();
-let scss = require("./scss.js")
-
 
 /* Data Loading */
 let textbooks = {}
@@ -41,6 +39,7 @@ function requiredProperties(...properties) {
   };
 }
 
+app.use("/textbooks", express.static("textbook_data"))
 app.use(express.static("static"))
 app.use(express.json())
 
@@ -58,12 +57,6 @@ app.post("/getChapter", requiredProperties("bookId", "chapterNumber"), (req, res
     res.status(200).sendFile(`${data.bookId}/chapters/${chapter}.json`, {root:__dirname+"/textbook_data"})
   }
 })
-
-console.log()
-scss.generate({log:true})
-console.log(`Watching ./static for SCSS changes!`)
-scss.watch()
-console.log()
 
 app.listen(4000, ()=>{
   console.log("Server Online!");
