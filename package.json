@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "watch": "scss-watch watch",
-    "build": "scss-watch build"
+    "build": "scss-watch build",
+    "postinstall": "scss-watch build"
   },
   "repository": {
     "type": "git",
