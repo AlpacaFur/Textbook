@@ -59,15 +59,3 @@ class Settings {
     return true;
   }
 }
-
-const settingsManifest = {
-  display: {
-    theme: "auto",
-  },
-}
-
-let settings = new Settings(settingsManifest);
-
-settings.listen("display.theme", (value)=>{
-  document.body.setAttribute("data-theme", value)
-})
