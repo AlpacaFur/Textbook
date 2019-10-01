@@ -1,15 +1,13 @@
 {
-  "name":"Mongol Influence on the Old World",
+  "name":"Primitive Types",
   "content": [
-    {"name":"Section 17", "content":[
-      {"type":"paragraph", "content":"Welcome to this sample book created for the Textbook app in order to compete in the Congressional App Challenge. While this textbook may not currently be very useful to student trying to learn the subject, it will become more helpful as more content is added. This is another sentence! And another one! And, finally, one last one."},
-      {"type":"image","content":"Image visualizing the differece between this book and a normal textbook.", "source":"Luke Taylor", "source-url":false, "url":"sample_url"},
-      {"type":"paragraph", "content":"And with that, this section is over."}
+    {"name":"Numbers", "content":[
+      {"name":"Overview","content":"Numbers are one of the primitive types in JavaScript and are important to many different parts of the language."},
+      {"content":"And with that, this section is over."}
     ]},
-    {"name":"Section 9 & 3/4", "content":[
-      {"type":"paragraph", "content":"This is a second test section"},
-      {"type":"image","content":"Section 2 Image.", "source":"Luke Taylor", "source-url":false, "url":"sample_url"},
-      {"type":"paragraph", "content":"And with that, this preface is over."}
+    {"name":"Strings", "content":[
+      {"content":"This is a second test section"},
+      {"content":"And with that, this preface is over."}
     ]}
   ]
 }
