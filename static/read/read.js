@@ -28,15 +28,19 @@ document.addEventListener("keydown", (event)=>{
   switch (event.key) {
     case "ArrowUp":
       book.backward()
+      event.preventDefault()
       break;
     case "ArrowLeft":
       book.backward()
+      event.preventDefault()
       break;
     case "ArrowDown":
       book.forward()
+      event.preventDefault()
       break;
     case "ArrowRight":
       book.forward()
+      event.preventDefault()
       break;
     default:
   }

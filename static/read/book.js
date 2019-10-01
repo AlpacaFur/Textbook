@@ -36,7 +36,7 @@ class Book {
     return this._sentenceSplit(this.chapterData.content[position.section].content[position.paragraph].content).length-1
   }
   _sentenceSplit(value) {
-    return value.split(/[\.\!\?] (?![\.\?\!] ?$)/)
+    return value.split(/[\.\!\?%] (?![\.\?\!%] ?$)/)
   }
   setBookData(bookManifest) {
     this.bookData = bookManifest;
@@ -48,16 +48,16 @@ class Book {
   }
   forward() {
     if (this.sentences.length-1 > this.position.sentence) {
-      this.contentElem.children[this.position.sentence].classList.remove("selected-text");
+      this.contentElem.children[this.position.sentence].classList.remove("selected");
       this.position.sentence++;
-      this.contentElem.children[this.position.sentence].classList.add("selected-text");
+      this.contentElem.children[this.position.sentence].scrollIntoView({block:"end",behavior:"smooth"});
+      this.contentElem.children[this.position.sentence].classList.add("selected");
     }
     else {
       if (this.section.content.length-1 > this.position.paragraph) {
         this.position.paragraph += 1;
         this.position.sentence = 0;
         this._loadData(this.chapterData, this.position);
-        this.render()
       }
       else if (this.chapterData.content.length-1 > this.position.section) {
         this.position.section += 1;
@@ -76,16 +76,16 @@ class Book {
   }
   backward() {
     if (this.position.sentence > 0) {
-      this.contentElem.children[this.position.sentence].classList.remove("selected-text");
-      this.position.sentence--
-      this.contentElem.children[this.position.sentence].classList.add("selected-text");
+      this.contentElem.children[this.position.sentence].classList.remove("selected");
+      this.position.sentence--;
+      this.contentElem.children[this.position.sentence].scrollIntoView({block:"end",behavior:"smooth"});
+      this.contentElem.children[this.position.sentence].classList.add("selected");
     }
     else {
       if (this.position.paragraph > 0) {
         this.position.paragraph -= 1;
         this.position.sentence = this._lastSentence(this.position)
         this._loadData(this.chapterData, this.position);
-        this.render()
       }
       else if (this.position.section > 0) {
         this.position.section -= 1;
@@ -110,10 +110,20 @@ class Book {
     let fragment = document.createDocumentFragment();
     let focusedSentence = this.position.sentence;
     this.sentences.forEach((sentence, index)=>{
-      let span = document.createElement("span");
-      span.textContent = sentence;
-      if (index === focusedSentence) span.classList.add("selected-text");
-      fragment.appendChild(span);
+      let imgMatch = sentence.match(/^%(.+)%?$/)
+      if (imgMatch) {
+        let img = document.createElement("img");
+        img.src = `/textbooks/${this.bookData.id}/images/${imgMatch[1]}`;
+        if (index === focusedSentence) img.classList.add("selected");
+        fragment.appendChild(img);
+        img.addEventListener("click", ()=>{img.classList.toggle("supersize")})
+      }
+      else {
+        let span = document.createElement("span");
+        span.textContent = sentence;
+        if (index === focusedSentence) span.classList.add("selected");
+        fragment.appendChild(span);
+      }
     })
     let elem = this.chapterElem.getElementsByClassName("active")[0];
     if (elem) {
@@ -123,6 +133,10 @@ class Book {
     this.chapterElem.children[this.position.section].classList.add("active")
     this._removeChildren(this.contentElem);
     this.contentElem.appendChild(fragment);
+    setTimeout(()=>{
+      this.contentElem.children[this.position.sentence].scrollIntoView({block:"end",behavior:"smooth"});
+    }, 250)
+
   }
   _getChildIndex(element) {
     return Array.prototype.indexOf.call(element.parentNode.children, element);
@@ -135,13 +149,16 @@ class Book {
   _loadData(data, position) {
     this.section = data.content[position.section];
     let sentences = this._sentenceSplit(this.section.content[position.paragraph].content);
-    this.sentences = sentences.map((str, ind)=>{return ind === sentences.length-1 ? str : str+". "})
+    this.sentences = sentences.map((str, ind)=>{return (ind === sentences.length-1 || str.startsWith("%")) ? str : str+". "})
     this.position = position;
     this.render()
   }
   _displayChapter() {
     let data = this.chapterData;
     this.chapterTitle.textContent = data.name;
+    this.chapterTitle.classList.add("pulse");
+    setTimeout(()=>{this.chapterTitle.classList.remove("pulse")}, 1000)
+
     this._removeChildren(this.chapterElem);
     let fragment = document.createDocumentFragment();
     data.content.forEach((section, index)=>{
@@ -151,7 +168,7 @@ class Book {
         this.position.section = index;
         this.position.paragraph = 0;
         this.position.sentence = 0;
-        this.render()
+        this._loadData(data, this.position)
       })
       fragment.appendChild(p)
     })
