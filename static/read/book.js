@@ -125,12 +125,19 @@ class Book {
         fragment.appendChild(span);
       }
     })
-    let elem = this.chapterElem.getElementsByClassName("active")[0];
-    if (elem) {
-      let index = this._getChildIndex(elem);
-      if (!(this.position.section === index)) elem.classList.remove("active");
-    }
-    this.chapterElem.children[this.position.section].classList.add("active")
+    let elem = [0];
+    Array.from(this.chapterElem.querySelectorAll(".active")).forEach((elem)=>{
+      let parentindex = this._getChildIndex(elem.parentNode);
+      if (elem.classList.contains("subsection")) {
+        let index = this._getChildIndex(elem);
+        if (!(this.position.paragraph+1 === index && this.position.section === parentindex)) elem.classList.remove("active")
+      }
+      else {
+        if (!(this.position.section === parentindex)) elem.classList.remove("active");
+      }
+    })
+    this.chapterElem.children[this.position.section].children[0].classList.add("active")
+    this.chapterElem.children[this.position.section].children[this.position.paragraph+1].classList.add("active")
     this._removeChildren(this.contentElem);
     this.contentElem.appendChild(fragment);
     setTimeout(()=>{
@@ -146,7 +153,7 @@ class Book {
       element.removeChild(element.firstChild);
     }
   }
-  _loadData(data, position) {
+  _loadData(data = this.chapterData, position = this.position) {
     this.section = data.content[position.section];
     let sentences = this._sentenceSplit(this.section.content[position.paragraph].content);
     this.sentences = sentences.map((str, ind)=>{return (ind === sentences.length-1 || str.startsWith("%")) ? str : str+". "})
@@ -162,6 +169,7 @@ class Book {
     this._removeChildren(this.chapterElem);
     let fragment = document.createDocumentFragment();
     data.content.forEach((section, index)=>{
+      let div = document.createElement("div")
       let p = document.createElement("p")
       p.textContent = section.name;
       p.addEventListener("click", ()=>{
@@ -170,7 +178,20 @@ class Book {
         this.position.sentence = 0;
         this._loadData(data, this.position)
       })
-      fragment.appendChild(p)
+      div.appendChild(p)
+      section.content.forEach((paragraph, para_index)=>{
+        let subp = document.createElement("p");
+        subp.textContent = paragraph.name || "UNDEFINED!";
+        subp.classList.add("subsection");
+        subp.addEventListener("click", ()=>{
+          this.position.section = index;
+          this.position.paragraph = para_index;
+          this.position.sentence = 0;
+          this._loadData(data, this.position)
+        })
+        div.appendChild(subp)
+      })
+      fragment.appendChild(div);
     })
     this.chapterElem.appendChild(fragment);
   }

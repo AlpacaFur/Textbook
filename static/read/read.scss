@@ -131,6 +131,9 @@ body {
     }
     .subsection {
       margin-left: 40px;
+      &.active {
+        font-weight: 600;
+      }
     }
   }
 
