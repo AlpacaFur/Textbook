@@ -1,0 +1,13 @@
+{
+  "name":"Physics",
+  "id":2,
+  "chapters": {
+    "0":"preface",
+    "1":"chapter_1"
+  },
+  "chapter_names": {
+    "0":"Preface",
+    "1":"Rectilinear Kinematics"
+  },
+  "public":false
+}

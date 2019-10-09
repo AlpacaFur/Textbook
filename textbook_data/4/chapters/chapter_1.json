@@ -1,0 +1,13 @@
+{
+  "name":"Primitive Types",
+  "content": [
+    {"name":"Numbers", "content":[
+      {"name":"Overview","content":"Numbers are one of the primitive types in JavaScript and are important to many different parts of the language."},
+      {"content":"And with that, this section is over."}
+    ]},
+    {"name":"Strings", "content":[
+      {"content":"This is a second test section"},
+      {"content":"And with that, this preface is over."}
+    ]}
+  ]
+}
