@@ -10,6 +10,8 @@ settings.listen("display.theme", (value)=>{
   document.body.setAttribute("data-theme", value)
 })
 
+document.getElementById("returnHome").addEventListener("click", ()=>{window.location.pathname = ""})
+
 let settingsContainer = document.getElementById("settingsContainer")
 document.getElementById("openSettings").addEventListener("click", ()=>{
   settingsContainer.classList.add("show");
