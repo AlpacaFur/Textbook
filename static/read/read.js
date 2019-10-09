@@ -26,7 +26,7 @@ document.getElementById("closeSettings").addEventListener("click", ()=>{
 })
 
 const urlParams = new URLSearchParams(window.location.search);
-const textbookID = urlParams.get('bookID') || 1;
+const textbookID = urlParams.get('bookID') || "us_history";
 const chapter = Number(urlParams.get('chapter')) || 0;
 history.replaceState({}, "Test", "/read/");
 
