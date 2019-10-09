@@ -1,13 +1,13 @@
 {
-  "name":"Physics",
-  "id":2,
+  "name":"United States History",
+  "id":"us_history",
   "chapters": {
     "0":"preface",
     "1":"chapter_1"
   },
   "chapter_names": {
     "0":"Preface",
-    "1":"Rectilinear Kinematics"
+    "1":"Primitive Types"
   },
   "public":false
 }

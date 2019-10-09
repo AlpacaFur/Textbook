@@ -1,13 +1,13 @@
 {
-  "name":"How to Code in JavaScript",
-  "id":1,
+  "name":"Physics",
+  "id":"physics",
   "chapters": {
     "0":"preface",
     "1":"chapter_1"
   },
   "chapter_names": {
     "0":"Preface",
-    "1":"Primitive Types"
+    "1":"Rectilinear Kinematics"
   },
   "public":false
 }

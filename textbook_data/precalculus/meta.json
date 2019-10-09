@@ -1,6 +1,6 @@
 {
   "name":"Precalculus",
-  "id":2,
+  "id":"precalculus",
   "chapters": {
     "0":"preface",
     "1":"chapter_1"

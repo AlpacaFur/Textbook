@@ -1,6 +1,6 @@
 {
-  "name":"United States History",
-  "id":2,
+  "name":"How to Code in JavaScript",
+  "id":"javascript",
   "chapters": {
     "0":"preface",
     "1":"chapter_1"
