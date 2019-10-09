@@ -2,8 +2,28 @@
 <html>
   <head>
     <title>Home – Textbook</title>
+    <link rel="stylesheet" href="textbook.css">
+    <script src="textbooks.js" defer></script>
   </head>
-  <body>
-    <h2>Textbook</h2> 
+  <body class="loading">
+    <script>
+      document.body.onload = ()=>{document.body.classList.remove("loading")}
+    </script>
+    <div class="sections">
+      <section class="textbooks">
+        <h2>Textbooks</h2>
+        <div class="container" id="textbook_list">
+
+        </div>
+      </section>
+      <section id="details">
+        <h2 id="bookTitle">United States History</h2>
+        <h3>Chapters:</h3>
+        <div class="chapters" id="chapters">
+
+        </div>
+      </section>
+
+    </div>
   </body>
 </html>

@@ -1,0 +1,116 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  --content-background: #eee;
+  --content-title: #666;
+  --content-unemphasized: #aaaaaa77;
+  --content-emphasized: #444;
+  --sidebar-background: #ddd;
+  @media (prefers-color-scheme: dark) {
+    --content-background: #333;
+    --content-title: #aaa;
+    --content-unemphasized: #66666677;
+    --content-emphasized: #ddd;
+    --sidebar-background: #111;
+  }
+  background-color: var(--content-background);
+  &.fadeout {
+    animation: fade-out 1.2s ease;
+  }
+  animation: fade-in 1s ease;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+.loading * {
+  transition: none !important;
+}
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  // margin-top: 20px;
+}
+#details {
+  padding-left: 20px;
+  h2 {
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: var(--content-emphasized);
+  }
+  h3 {
+    margin: 5px 0 0 10px;
+    color: var(--content-emphasized);
+
+  }
+  .chapters {
+    margin-left: 20px;
+    p {
+      margin: 7px 0px;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &.show {
+    background-color: var(--sidebar-background);
+    box-shadow: inset 0px 0px 10px 0px #000000BF;
+    >* {
+      opacity: 1;
+      transition-delay: 0;
+    }
+  }
+  background-color: var(--content-background);
+  box-shadow: inset 0px 0px 0px 0px #000000BF;
+  transition: box-shadow 0.5s ease, background-color 0.5s ease;
+  >* {
+    opacity: 0;
+    transition: opacity 1s ease;
+    transition-delay: 0.5s;
+  }
+  height: 100%;
+}
+.textbooks {
+  padding: 20px;
+  h2 {
+    font-size: 50px;
+    margin-top: 0;
+    color: var(--content-emphasized);
+
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 40px;
+    padding: 0px 30px;
+  }
+  .textbook {
+    transform: translate(0px, 0px);
+    // width:200px;
+    position: relative;
+    box-shadow: 2px 2px 6px 0px #00000099;
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    img {
+      width:100%;
+      display:block;
+    }
+    &:hover {
+      img {
+        cursor: pointer;
+      }
+      transform: translate(-5px, -5px);
+      box-shadow: 10px 10px 12px 0px #00000077;
+    }
+  }
+}

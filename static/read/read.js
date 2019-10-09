@@ -10,7 +10,12 @@ settings.listen("display.theme", (value)=>{
   document.body.setAttribute("data-theme", value)
 })
 
-document.getElementById("returnHome").addEventListener("click", ()=>{window.location.pathname = ""})
+document.getElementById("returnHome").addEventListener("click", ()=>{
+  document.body.classList.add("fadeout");
+  setTimeout(()=>{
+    window.location.pathname = ""
+  }, 1000)
+})
 
 let settingsContainer = document.getElementById("settingsContainer")
 document.getElementById("openSettings").addEventListener("click", ()=>{
@@ -20,13 +25,19 @@ document.getElementById("closeSettings").addEventListener("click", ()=>{
   settingsContainer.classList.remove("show");
 })
 
-function getData(callback) {
-  let data = fetch("/textbooks/1/meta.json", {})
+const urlParams = new URLSearchParams(window.location.search);
+const textbookID = urlParams.get('bookID') || 1;
+const chapter = Number(urlParams.get('chapter')) || 0;
+history.replaceState({}, "Test", "/read/");
+
+function getData(id, callback) {
+  let data = fetch(`/textbooks/${id}/meta.json`, {})
     .then(res=>res.json())
     .then(data=>callback(data))
 }
 
 document.addEventListener("keydown", (event)=>{
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
   switch (event.key) {
     case "ArrowUp":
       book.backward()
@@ -50,9 +61,9 @@ document.addEventListener("keydown", (event)=>{
 
 
 let book = new Book(document.getElementById("section-title"), document.getElementById("inner-content").firstElementChild, document.getElementById("returnHome"), document.getElementById("chapter-contents"));
-getData((data)=>{
+getData(textbookID, (data)=>{
   book.setBookData(data);
-  book.setPosition({chapter:0,section:0,paragraph:0,sentence:0})
+  book.setPosition({chapter:chapter,section:0,paragraph:0,sentence:0})
 })
 
 

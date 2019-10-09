@@ -1,7 +1,23 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
 body {
   margin: 0;
   overflow: hidden;
   font-family: "Avenir Next", sans-serif;
+  background-color: var(--content-background);
+
+  animation: fade-in 1s ease;
+  &.fadeout {
+    animation: fade-out 1.2s ease;
+  }
   &[data-theme=auto], &[data-theme] {
     --content-background: #eee;
     --content-title: #666;
@@ -220,15 +236,16 @@ body {
       color: var(--content-title);
       background-color: var(--content-background);
       box-shadow: inset 0px 0px 0px 0px #000000BF, 0px 0px 10px 0px #000000BF;
-      h2 {
+      #openSettings {
         color: var(--content-emphasized);
         &::before {
-          border-left-color: var(--content-unemphasized)
+          border-left-color: var(--content-unemphasized);
         }
       }
     }
     >h2:nth-child(2) {
       margin-top: 0;
+      transition: color 0.35s ease;
     }
     #openSettings {
       font-size: 20px;
