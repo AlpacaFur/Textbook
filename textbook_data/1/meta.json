@@ -1,9 +1,13 @@
 {
-  "name":"AP European History",
+  "name":"How to Code in JavaScript",
   "id":1,
   "chapters": {
     "0":"preface",
     "1":"chapter_1"
+  },
+  "chapter_names": {
+    "0":"Preface",
+    "1":"Primitive Types"
   },
   "public":false
 }
