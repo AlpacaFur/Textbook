@@ -1,5 +1,16 @@
 let currentId;
 
+document.getElementById("startButton").addEventListener("click", ()=>{
+  fadeAndGo(`/read?bookID=${currentId}`)
+})
+
+function fadeAndGo(url) {
+  document.body.classList.add("fadeout");
+  setTimeout(()=>{
+    window.location = url;
+  }, 1000)
+}
+
 fetch("/textbooks/textbook_registry.json")
   .then(res=>res.json())
   .then((data)=>{
@@ -37,10 +48,7 @@ function loadBook(id) {
         let p = document.createElement("p");
         p.textContent = name;
         p.addEventListener("click", ()=>{
-          document.body.classList.add("fadeout");
-          setTimeout(()=>{
-            window.location = `/read?bookID=1&chapter=${index}`;
-          }, 1000)
+          fadeAndGo(`/read?bookID=1&chapter=${index}`)
         })
         frag.appendChild(p);
       })

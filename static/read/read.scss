@@ -176,7 +176,7 @@ body {
       // transition: background-color 0.35s ease;
     }
     img {
-      max-width: 100%;
+      max-width: 60%;
       max-height: 80vh;
       display: block;
       margin: 10px 0px;
@@ -184,12 +184,13 @@ body {
       transition: opacity 0.5s ease;
       border-radius: 10px;
       &.supersize {
-        max-height: none;
+        max-width: 100vw;
+        max-height: 100vh;
         transition: none;
         opacity: 1;
         margin: 0px;
         position: absolute;
-        width: 90vw;
+        // width: 90vw;
         left:50%;
         top: 50%;
         transform: translate(-50%, -50%);
