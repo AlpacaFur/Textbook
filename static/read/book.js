@@ -40,6 +40,7 @@ class Book {
   }
   setBookData(bookManifest) {
     this.bookData = bookManifest;
+    document.getElementsByTagName("title")[0].textContent = `${bookManifest.name} - Tome`
   }
   setPosition(position) {
     if (!this.bookData) throw new Error("Can't set the position of an unknown book!")
