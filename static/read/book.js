@@ -112,10 +112,18 @@ class Book {
     this.sentences.forEach((sentence, index)=>{
       let imgMatch = sentence.match(/^%(.+)%?$/)
       if (imgMatch) {
+        let [src, caption] = imgMatch[1].split("|")
+        let div = document.createElement("div");
         let img = document.createElement("img");
-        img.src = `/textbooks/${this.bookData.id}/images/${imgMatch[1]}`;
-        if (index === focusedSentence) img.classList.add("selected");
-        fragment.appendChild(img);
+        img.src = `/textbooks/${this.bookData.id}/images/${src}`;
+        img.setAttribute("caption", caption);
+        div.appendChild(img);
+        let p = document.createElement("p");
+        p.textContent = caption;
+        div.appendChild(p);
+        div.classList.add("imgdiv")
+        if (index === focusedSentence) div.classList.add("selected");
+        fragment.appendChild(div);
         img.addEventListener("click", ()=>{img.classList.toggle("supersize")})
       }
       else {
