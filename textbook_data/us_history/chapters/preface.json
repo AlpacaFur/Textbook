@@ -2,12 +2,7 @@
   "name":"Preface",
   "content": [
     {"name":"Welcome to this Book", "content":[
-      {"name":"Introduction", "content":"%pawtucket.jpg% Welcome to this sample book created for the Textbook app in order to compete in the Congressional App Challenge. While this textbook may not currently be very useful to student trying to learn the subject, it will become more helpful as more content is added. This is another sentence! And another one! And, finally, one last one."},
-      {"name":"Concluding Sentences", "content":"And with that, this section is over. Except for this very last sentence."}
-    ]},
-    {"name":"What is JavaScript?", "content":[
-      {"name":"Overview", "content":"JavaScript is a programming language that allows for the greater functionality of web pages on the internet. The vast majority of websites use some form of JavaScript, including the one you're reading this textbook on!"},
-      {"name":"Concluding Sentences", "content":"And with that, this preface is over. Except for this very last sentence."}
+      {"name":"Introduction", "content":"%pawtucket.jpg|A map of Pawtucket and Central Falls in Rhode Island% Welcome to this sample book created for the Textbook app in order to compete in the Congressional App Challenge. While this textbook may not currently be very useful to student trying to learn the subject, it will become more helpful as more content is added.", "detail":"This first paragraph has undergone many revisions over the course of the development of this app in order to test out different features as they were implemented, including the feature you are using to read this!"}
     ]}
   ]
 }
