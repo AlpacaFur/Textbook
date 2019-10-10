@@ -80,6 +80,7 @@ body {
   .chapters {
     margin-left: 20px;
     p {
+      color: var(--content-emphasized);
       margin: 7px 0px;
       cursor: pointer;
       text-decoration: underline;

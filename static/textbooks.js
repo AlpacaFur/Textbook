@@ -48,7 +48,7 @@ function loadBook(id) {
         let p = document.createElement("p");
         p.textContent = name;
         p.addEventListener("click", ()=>{
-          fadeAndGo(`/read?bookID=1&chapter=${index}`)
+          fadeAndGo(`/read?bookID=${id}&chapter=${index}`)
         })
         frag.appendChild(p);
       })
