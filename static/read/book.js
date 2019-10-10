@@ -110,6 +110,13 @@ class Book {
     this.titleElem.textContent = this.section.name;
     let fragment = document.createDocumentFragment();
     let focusedSentence = this.position.sentence;
+    if (this.section.content[this.position.paragraph].detail) {
+      document.getElementById("details").classList.add("show");
+      document.getElementById("detailText").textContent = this.section.content[this.position.paragraph].detail;
+    }
+    else {
+      document.getElementById("details").classList.remove("show");
+    }
     this.sentences.forEach((sentence, index)=>{
       let imgMatch = sentence.match(/^%(.+)%?$/)
       if (imgMatch) {

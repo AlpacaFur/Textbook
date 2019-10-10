@@ -10,6 +10,11 @@ settings.listen("display.theme", (value)=>{
   document.body.setAttribute("data-theme", value)
 })
 
+let detailButton = document.getElementById("detailButton")
+detailButton.addEventListener("click", ()=>{
+  detailButton.textContent = `${document.getElementById("detailText").classList.toggle("show")?"Hide":"Show"} Details`
+})
+
 document.getElementById("returnHome").addEventListener("click", ()=>{
   document.body.classList.add("fadeout");
   setTimeout(()=>{
