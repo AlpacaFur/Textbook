@@ -106,17 +106,37 @@ class Book {
       }
     }
   }
+  tagSearch(tag) {
+
+  }
   render() {
     this.titleElem.textContent = this.section.name;
-    let fragment = document.createDocumentFragment();
-    let focusedSentence = this.position.sentence;
-    if (this.section.content[this.position.paragraph].detail) {
+    let paragraph = this.section.content[this.position.paragraph];
+    let tagsElem = document.getElementById("tags")
+    this._removeChildren(tagsElem);
+    let tagFrag = document.createDocumentFragment();
+    if (paragraph.tags) {
+      document.getElementById("tagTitle").classList.add("show");
+      paragraph.tags.forEach((tag)=>{
+        let p = document.createElement("p");
+        p.textContent = tag;
+        tagFrag.appendChild(p)
+        p.addEventListener("click", ()=>{tagSearch(tag)})
+      })
+    }
+    else {
+      document.getElementById("tagTitle").classList.remove("show");
+    }
+    tagsElem.appendChild(tagFrag)
+    if (paragraph.detail) {
       document.getElementById("details").classList.add("show");
       document.getElementById("detailText").textContent = this.section.content[this.position.paragraph].detail;
     }
     else {
       document.getElementById("details").classList.remove("show");
     }
+    let focusedSentence = this.position.sentence;
+    let fragment = document.createDocumentFragment();
     this.sentences.forEach((sentence, index)=>{
       let imgMatch = sentence.match(/^%(.+)%?$/)
       if (imgMatch) {

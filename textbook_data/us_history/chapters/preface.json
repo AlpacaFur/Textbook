@@ -1,8 +1,10 @@
 {
   "name":"Preface",
   "content": [
-    {"name":"Welcome to this Book", "content":[
-      {"name":"Introduction", "content":"%pawtucket.jpg|A map of Pawtucket and Central Falls in Rhode Island% Welcome to this sample book created for the Textbook app in order to compete in the Congressional App Challenge. While this textbook may not currently be very useful to student trying to learn the subject, it will become more helpful as more content is added.", "detail":"This first paragraph has undergone many revisions over the course of the development of this app in order to test out different features as they were implemented, including the feature you are using to read this!"}
+    {"name":"Welcome to United States History", "content":[
+      {"name":"Introduction",
+        "content":"%pawtucket.jpg|A map of Pawtucket and Central Falls in Rhode Island, 1877% Welcome to this sample United States History textbook created for the Tome app in order to compete in the Congressional App Challenge. While this textbook may not currently be very useful to student trying to learn the subject, it will become more helpful as more content is added.",
+        "detail":"This first paragraph has undergone many revisions over the course of the development of this app in order to test out different features as they were implemented, including the feature you are using to read this!"}
     ]}
   ]
 }

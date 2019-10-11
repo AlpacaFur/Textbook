@@ -2,11 +2,18 @@
   "name":"North America Prior to European Arrival",
   "content": [
     {"name":"North American Tribes", "content":[
-      {"name":"Populations","content":"The Native Americans living in North America were much more spread out than their South American counterparts. They were extremely diverse and each group adapted to survive in the environments they lived in."},
-      {"name":"Agriculture", "content":"Similar to other aspects, Native Americans also differed in what they grew. In general, on the Eastern Seaboard, where the English settlers first encountered them, they grew various crops, such as beans, squash, and corn, as well as participating in hunting and trapping.", "detail":"The three crops corn, squash, and beans were called the \"three sisters\" because they were planted in such a way that each benefitied from the others' presence. The corn provided a platform for the beans to grow on, the beans enriched the soil, and the squash covered the ground, preventing the growth of weeds."}
+      {"name":"Populations",
+        "content":"The Native Americans living in North America were much more spread out than their South American counterparts. They were extremely diverse and each group adapted to survive in the environments they lived in.",
+        "tags":["Native Americans","Population"]},
+      {"name":"Agriculture",
+        "content":"Similar to other aspects, Native Americans also differed in what they grew. In general, on the Eastern Seaboard, where the English settlers first encountered them, they grew various crops, such as beans, squash, and corn, as well as participating in hunting and trapping.",
+        "detail":"The three crops corn, squash, and beans were called the \"three sisters\" because they were planted in such a way that each benefitied from the others' presence. The corn provided a platform for the beans to grow on, the beans enriched the soil, and the squash covered the ground, preventing the growth of weeds.",
+        "tags":["Native Americans","Agriculture"]}
     ]},
     {"name":"Epidemic", "content":[
-      {"name":"European Diseases","content":"This is a second test section"},
+      {"name":"European Diseases",
+        "content":"This is a second test section",
+        "tags":["Native Americans","Population", "Disease"]},
       {"content":"And with that, this preface is over."}
     ]}
   ]

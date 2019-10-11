@@ -173,7 +173,7 @@ body {
       padding: 0.6em 0;
       z-index: 15;
       background-color: var(--content-background);
-      // transition: background-color 0.35s ease;
+      transition: background-color 0.35s ease, color 0.35s ease;
     }
     .imgdiv {
       &.selected {
@@ -268,10 +268,42 @@ body {
         }
         color:white;
       }
+      #tags {
+        p {
+          color: var(--content-emphasized);
+          box-shadow: 0px 0px 0px 1px var(--content-emphasized);
+        }
+      }
     }
     >h2:nth-child(2) {
       margin-top: 0;
       transition: color 0.35s ease;
+    }
+    h3 {
+      transition: color 0.35s ease;
+      margin-bottom: 5px;
+      &:not(.show) {
+        display: none;
+      }
+    }
+    #tags {
+      margin-bottom: 20px;
+      p {
+    		display: inline-block;
+    		box-shadow: 0px 0px 0px 1px var(--content-unemphasized);
+    		padding: 5px 10px;
+    		border-radius: 20px;
+    		font-family: "Avenir Next", sans-serif;
+    		cursor: pointer;
+    		margin-right: 5px;
+    		transition: box-shadow 0.35s ease, color 0.35s ease;
+        margin: 7px 5px;
+        color: var(--content-unemphasized);
+    		&:hover {
+    			box-shadow: 0px 0px 0px 2.4px var(--content-emphasized);
+    		}
+
+    	}
     }
     #detailText {
       opacity: 0;
