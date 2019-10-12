@@ -1,7 +1,8 @@
 class Book {
   constructor(titleElem, contentElem, chapterTitle, chapterElem) {
     // Manifest data
-    this.bookData = false;
+    this.bookData = null;
+    this.tagIndex = null;
 
     this.position = {chapter:-1, section:-1, paragraph:-1, sentence:-1};
 
@@ -38,9 +39,12 @@ class Book {
   _sentenceSplit(value) {
     return value.split(/[\.\!\?%] (?![\.\?\!%] ?$)/)
   }
+  setTagIndex(tagIndex) {
+    this.tagIndex = tagIndex
+  }
   setBookData(bookManifest) {
     this.bookData = bookManifest;
-    document.getElementsByTagName("title")[0].textContent = `${bookManifest.name} - Tome`
+    document.getElementsByTagName("title")[0].textContent = `${bookManifest.name} - Tome`;
   }
   setPosition(position) {
     if (!this.bookData) throw new Error("Can't set the position of an unknown book!")
@@ -106,12 +110,42 @@ class Book {
       }
     }
   }
-  tagSearch(tag) {
+  tagSearch(elem, tag) {
+    let activate = elem.classList.toggle("active");
+    let activeTags = document.getElementById("tags").getElementsByClassName("active");
+    if (activeTags.length === 2) {
+      Array.from(activeTags).forEach(elemItr=>{
+        if (!(elemItr === elem)) elemItr.classList.remove("active")
+      })
+    }
+    let tagResults = document.getElementById("tagResults")
+    if (activate) {
+      let fragment = document.createDocumentFragment();
+      this.tagIndex[tag].forEach((tagEntry)=>{
+        let p = document.createElement("p");
+        p.textContent = tagEntry.title;
 
+        if (tagEntry.position.chapter === this.position.chapter && tagEntry.position.section === this.position.section && tagEntry.position.paragraph === this.position.paragraph) {
+          p.classList.add("current")
+        } else {
+          p.addEventListener("click", ()=>{
+            let pos = {...tagEntry.position, sentence: 0}
+            this.loadChapter(pos);
+          })
+        }
+        fragment.appendChild(p)
+      })
+      this._removeChildren(tagResults);
+      tagResults.appendChild(fragment)
+      tagResults.classList.add("show")
+    }
+    else {
+      tagResults.classList.remove("show")
+    }
   }
   render() {
-    this.titleElem.textContent = this.section.name;
     let paragraph = this.section.content[this.position.paragraph];
+    this.titleElem.textContent = paragraph.name;
     let tagsElem = document.getElementById("tags")
     this._removeChildren(tagsElem);
     let tagFrag = document.createDocumentFragment();
@@ -121,7 +155,7 @@ class Book {
         let p = document.createElement("p");
         p.textContent = tag;
         tagFrag.appendChild(p)
-        p.addEventListener("click", ()=>{tagSearch(tag)})
+        p.addEventListener("click", (event)=>{this.tagSearch(event.target, tag)})
       })
     }
     else {
@@ -130,11 +164,16 @@ class Book {
     tagsElem.appendChild(tagFrag)
     if (paragraph.detail) {
       document.getElementById("details").classList.add("show");
-      document.getElementById("detailText").textContent = this.section.content[this.position.paragraph].detail;
+      let detailText = document.getElementById("detailText");
+      if (!detailText.classList.contains("show")) {
+        document.getElementById("detailButton").classList.remove("seen");
+      }
+      detailText.textContent = this.section.content[this.position.paragraph].detail;
     }
     else {
       document.getElementById("details").classList.remove("show");
     }
+    document.getElementById("tagResults").classList.remove("show")
     let focusedSentence = this.position.sentence;
     let fragment = document.createDocumentFragment();
     this.sentences.forEach((sentence, index)=>{

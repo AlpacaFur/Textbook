@@ -7,6 +7,26 @@ require("./textbook_data/textbook_registry.json").textbooks.forEach((id)=>{
   textbooks[id] = require(`./textbook_data/${id}/meta.json`)
 })
 
+let textbookTags = {}
+
+Object.values(textbooks).forEach((textbook)=>{
+  console.log(`Loading ${textbook.name}...`);
+  textbookTags[textbook.id] = {};
+  Object.entries(textbook.chapters).forEach(([chapterIndex, chapter])=>{
+    let chapterObj = require(`./textbook_data/${textbook.id}/chapters/${chapter}`);
+    chapterObj.content.forEach((section, sectionIndex)=>{
+      section.content.forEach((paragraph, paragraphIndex)=>{
+        if (paragraph.tags) {
+          paragraph.tags.forEach((tag)=>{
+            if (!textbookTags[textbook.id][tag]) textbookTags[textbook.id][tag] = [];
+
+            textbookTags[textbook.id][tag].push({position:{chapter:Number(chapterIndex), section:sectionIndex, paragraph:paragraphIndex}, title: `${section.name} - ${paragraph.name}`});
+          })
+        }
+      })
+    })
+  })
+})
 
 const textbookManifest = JSON.stringify(textbooks)
 
@@ -45,6 +65,14 @@ app.use(express.json())
 
 app.post("/getTextbooks", (req, res)=>{
   res.status(200).send(textbookManifest)
+})
+
+app.post("/getTagIndex", (req, res)=>{
+  let data = req.body;
+  if (textbookTags[data.id]) res.send(textbookTags[data.id]);
+  else {
+    res.sendStatus(404)
+  }
 })
 
 app.post("/getChapter", requiredProperties("bookId", "chapterNumber"), (req, res)=>{

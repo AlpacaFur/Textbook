@@ -143,6 +143,7 @@ body {
       &.active {
         animation: activeFlash 1s ease;
         font-weight: bold;
+        pointer-events: none;
       }
     }
     .subsection {
@@ -248,17 +249,16 @@ body {
     transition: background-color 0.35s ease, box-shadow 0.35s ease;
     position: relative;
     z-index: 10;
+    --local-color: var(--content-unemphasized);
     &:hover {
+      --local-color: var(--content-emphasized);
       color: var(--content-title);
       background-color: var(--content-background);
       box-shadow: inset 0px 0px 0px 0px #000000BF, 0px 0px 10px 0px #000000BF;
-      #openSettings {
-        color: var(--content-emphasized);
-        &::before {
-          border-left-color: var(--content-unemphasized);
-        }
+      #openSettings::before {
+        border-left-color: var(--content-unemphasized);
       }
-      .indicator {
+      #detailButton {
         background-color: #00a4e6;
         &:hover {
           background-color: #0080B3;
@@ -267,12 +267,13 @@ body {
           background-color: #005B80;
         }
         color:white;
-      }
-      #tags {
-        p {
-          color: var(--content-emphasized);
-          box-shadow: 0px 0px 0px 1px var(--content-emphasized);
+        &::after {
+          background-color: red;
         }
+      }
+      #tags>p.active {
+        background-color: var(--content-emphasized);
+        color: var(--sidebar-background);
       }
     }
     >h2:nth-child(2) {
@@ -287,23 +288,49 @@ body {
       }
     }
     #tags {
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
       p {
     		display: inline-block;
-    		box-shadow: 0px 0px 0px 1px var(--content-unemphasized);
+    		box-shadow: 0px 0px 0px 1px var(--local-color);
     		padding: 5px 10px;
     		border-radius: 20px;
     		font-family: "Avenir Next", sans-serif;
     		cursor: pointer;
     		margin-right: 5px;
-    		transition: box-shadow 0.35s ease, color 0.35s ease;
+    		transition: box-shadow 0.35s ease, color 0.35s ease, background-color 0.35s ease;
         margin: 7px 5px;
-        color: var(--content-unemphasized);
+        color: var(--local-color);
+        user-select: none;
     		&:hover {
-    			box-shadow: 0px 0px 0px 2.4px var(--content-emphasized);
+    			box-shadow: 0px 0px 0px 2.4px var(--local-color);
     		}
-
+        &.active {
+          background-color: var(--content-unemphasized);
+          color: var(--sidebar-background);
+        }
     	}
+    }
+    #tagResults {
+      display: none;
+      box-sizing: border-box;
+      &.show {
+        display: block;
+        animation: fade-in 1s ease;
+      }
+      p {
+        text-indent: -20px;
+        margin: 4px 0px 4px 20px;
+        color: var(--local-color);
+        transition: color 0.35s ease;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+        &.current {
+          font-weight: bold;
+          pointer-events: none;
+        }
+      }
     }
     #detailText {
       opacity: 0;
@@ -316,7 +343,10 @@ body {
       opacity: 0;
       pointer-events: none;
     }
-    .indicator {
+    #detailButton {
+      margin-top: 7px;
+      margin-left: 5px;
+
     	color: #888;
     	background-color: var(--content-unemphasized);
     	display: inline-block;
@@ -324,6 +354,24 @@ body {
     	transition: background-color 0.35s ease, color 0.35s ease, opacity 0.35s ease;
     	padding: 5px 15px;
     	cursor: pointer;
+      user-select: none;
+      position: relative;
+      &.seen {
+        &:after {
+          opacity: 0;
+        }
+      }
+      &::after {
+        content:"";
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        background-color: var(--content-unemphasized);
+        position: absolute;
+        left:-3px;
+        top:-3px;
+        transition: opacity 0.35s ease, background-color 0.35s ease;
+      }
     }
     #openSettings {
       font-size: 20px;
@@ -331,6 +379,7 @@ body {
       position: relative;
       margin-right: 10px;
       text-align: right;
+      color: var(--local-color);
       &::before {
         content:"";
         width:0;
@@ -368,22 +417,6 @@ body {
         color: transparent;
         transition: color 0.35s ease;
       }
-    }
-    // p {
-    //   margin: 0.3em 0;
-    //   font-size: 18px;
-    //   margin-left: 25px;
-    //   transition-property: color, text-decoration, font-weight;
-    //   transition-duration: 0.35s;
-    //   transition-timing-function: ease;
-    //   cursor:pointer;
-    //   &:hover {
-    //     font-weight: 600;
-    //     text-decoration: underline;
-    //   }
-    // }
-    .subsection {
-      margin-left: 40px;
     }
   }
   #right-sidebar>#settingsContainer {

@@ -12,6 +12,7 @@ settings.listen("display.theme", (value)=>{
 
 let detailButton = document.getElementById("detailButton")
 detailButton.addEventListener("click", ()=>{
+  detailButton.classList.add("seen");
   detailButton.textContent = `${document.getElementById("detailText").classList.toggle("show")?"Hide":"Show"} Details`
 })
 
@@ -70,6 +71,9 @@ getData(textbookID, (data)=>{
   book.setBookData(data);
   book.setPosition({chapter:chapter,section:0,paragraph:0,sentence:0})
 })
+fetch("/getTagIndex", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({id:textbookID})})
+.then(res=>res.json())
+.then((data)=>{book.setTagIndex(data)})
 
 
 
