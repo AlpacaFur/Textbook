@@ -3,10 +3,11 @@ class Book {
     // Manifest data
     this.bookData = null;
     this.tagIndex = null;
+    this.lengthIndex = null;
 
     this.position = {chapter:-1, section:-1, paragraph:-1, sentence:-1};
 
-    this.loadedChapters = {}
+    this.loadedChapters = {};
     this.chapterData = [];
     this.section = [];
     this.sentences = [];
@@ -40,7 +41,10 @@ class Book {
     return value.split(/[\.\!\?%] (?![\.\?\!%] ?$)/)
   }
   setTagIndex(tagIndex) {
-    this.tagIndex = tagIndex
+    this.tagIndex = tagIndex;
+  }
+  setLengthIndex(lengthIndex) {
+    this.lengthIndex = lengthIndex;
   }
   setBookData(bookManifest) {
     this.bookData = bookManifest;
@@ -57,6 +61,7 @@ class Book {
       this.position.sentence++;
       this.contentElem.children[this.position.sentence].scrollIntoView({block:"end",behavior:"smooth"});
       this.contentElem.children[this.position.sentence].classList.add("selected");
+      book.updatePercentage()
     }
     else {
       if (this.section.content.length-1 > this.position.paragraph) {
@@ -85,6 +90,7 @@ class Book {
       this.position.sentence--;
       this.contentElem.children[this.position.sentence].scrollIntoView({block:"end",behavior:"smooth"});
       this.contentElem.children[this.position.sentence].classList.add("selected");
+      book.updatePercentage()
     }
     else {
       if (this.position.paragraph > 0) {
@@ -109,6 +115,21 @@ class Book {
         })
       }
     }
+  }
+  updatePercentage() {
+    let percent = this.calculatePercentage();
+    document.getElementById("progress").value = percent;
+    document.getElementById("progress-value").textContent = `${percent}%`
+  }
+  calculatePercentage() {
+     let pos = `${this.position.chapter}.${this.position.section}.${this.position.paragraph}`
+     let currentLen = this.lengthIndex[pos];
+     this.sentences.forEach((sentence, index)=>{
+       if (index <= this.position.sentence) {
+         currentLen += sentence.length;
+       }
+     })
+    return Math.round(currentLen/this.lengthIndex[this.position.chapter]*100)
   }
   tagSearch(elem, tag) {
     let activate = elem.classList.toggle("active");
@@ -192,6 +213,7 @@ class Book {
         if (index === focusedSentence) div.classList.add("selected");
         fragment.appendChild(div);
         img.addEventListener("click", ()=>{img.classList.toggle("supersize")})
+        this.sentences[index] += "% "
       }
       else {
         let span = document.createElement("span");
@@ -218,7 +240,7 @@ class Book {
     setTimeout(()=>{
       this.contentElem.children[this.position.sentence].scrollIntoView({block:"end",behavior:"smooth"});
     }, 250)
-
+    book.updatePercentage()
   }
   _getChildIndex(element) {
     return Array.prototype.indexOf.call(element.parentNode.children, element);

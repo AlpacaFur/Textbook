@@ -8,12 +8,15 @@ require("./textbook_data/textbook_registry.json").textbooks.forEach((id)=>{
 })
 
 let textbookTags = {}
+let lengths = {};
 
 Object.values(textbooks).forEach((textbook)=>{
   console.log(`Loading ${textbook.name}...`);
   textbookTags[textbook.id] = {};
+  lengths[textbook.id] = {};
   Object.entries(textbook.chapters).forEach(([chapterIndex, chapter])=>{
     let chapterObj = require(`./textbook_data/${textbook.id}/chapters/${chapter}`);
+    let totalLength = 0;
     chapterObj.content.forEach((section, sectionIndex)=>{
       section.content.forEach((paragraph, paragraphIndex)=>{
         if (paragraph.tags) {
@@ -23,8 +26,11 @@ Object.values(textbooks).forEach((textbook)=>{
             textbookTags[textbook.id][tag].push({position:{chapter:Number(chapterIndex), section:sectionIndex, paragraph:paragraphIndex}, title: `${section.name} - ${paragraph.name}`});
           })
         }
+        lengths[textbook.id][`${chapterIndex}.${sectionIndex}.${paragraphIndex}`] = totalLength;
+        totalLength += paragraph.content.length;
       })
     })
+    lengths[textbook.id][chapterIndex] = totalLength;
   })
 })
 
@@ -72,6 +78,14 @@ app.post("/getTagIndex", (req, res)=>{
   if (textbookTags[data.id]) res.send(textbookTags[data.id]);
   else {
     res.sendStatus(404)
+  }
+})
+
+app.post("/getLengthIndex", (req, res)=>{
+  let data = req.body;
+  if (lengths[data.id]) res.send(lengths[data.id]);
+  else {
+    res.sendStatus(404);
   }
 })
 

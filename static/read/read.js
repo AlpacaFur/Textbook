@@ -71,9 +71,13 @@ getData(textbookID, (data)=>{
   book.setBookData(data);
   book.setPosition({chapter:chapter,section:0,paragraph:0,sentence:0})
 })
-fetch("/getTagIndex", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({id:textbookID})})
-.then(res=>res.json())
-.then((data)=>{book.setTagIndex(data)})
+let textbookRequest = {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({id:textbookID})}
+fetch("/getTagIndex", textbookRequest)
+  .then(res=>res.json())
+  .then((data)=>{book.setTagIndex(data)})
+fetch("/getLengthIndex", textbookRequest)
+  .then(res=>res.json())
+  .then((data)=>{book.setLengthIndex(data)})
 
 
 
