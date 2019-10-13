@@ -23,12 +23,14 @@ body {
     --content-background: #eee;
     --content-title: #666;
     --content-unemphasized: #aaaaaa77;
+    --secondary-unemphasized: #B5B5B5;
     --content-emphasized: #444;
     --sidebar-background: #ddd;
     @media (prefers-color-scheme: dark) {
       --content-background: #333;
       --content-title: #aaa;
       --content-unemphasized: #66666677;
+      --secondary-unemphasized: #616161;
       --content-emphasized: #ddd;
       --sidebar-background: #111;
     }
@@ -37,6 +39,7 @@ body {
     --content-background: #eee;
     --content-title: #666;
     --content-unemphasized: #aaaaaa77;
+    --secondary-unemphasized: #B5B5B5;
     --content-emphasized: #444;
     --sidebar-background: #ddd;
   }
@@ -44,6 +47,7 @@ body {
     --content-background: #333;
     --content-title: #aaa;
     --content-unemphasized: #66666677;
+    --secondary-unemphasized: #616161;
     --content-emphasized: #ddd;
     --sidebar-background: #111;
   }
@@ -121,7 +125,7 @@ body {
         }
       }
       &::after {
-        content:"Return Home";
+        content:"Return to Bookshelf";
         position: absolute;
         top:50%;
         left: 0;
@@ -287,7 +291,7 @@ body {
     .progress-container {
       position: relative;
       margin-bottom: 25px;
-      margin-top: 30px;
+      margin-top: 10px;
       height: 30px;
       #progress-value {
         display:inline-block;
@@ -313,7 +317,7 @@ body {
           border-radius: 10px;
         }
         &::-webkit-progress-value {
-          background: #B5B5B5;
+          background: var(--secondary-unemphasized);
           border-radius: 10px;
           transition: background-color 0.35s ease, width 0.35s ease;
         }
@@ -323,12 +327,20 @@ body {
       margin-top: 0;
       transition: color 0.35s ease;
     }
-    h3 {
+    #tagTitle {
       transition: color 0.35s ease;
       margin-bottom: 5px;
       &:not(.show) {
         display: none;
       }
+    }
+    .chapter-progress {
+      transition: color 0.35s ease;
+      text-align: center;
+      margin-bottom: 0;
+      margin-top: 25px;
+      font-size: 12px;
+      text-transform: uppercase;
     }
     #tags {
       // margin-bottom: 20px;
@@ -387,7 +399,7 @@ body {
       pointer-events: none;
     }
     #detailButton {
-      margin-top: 7px;
+      margin-top: 12px;
       margin-left: 5px;
 
     	color: #888;
@@ -470,7 +482,7 @@ body {
     top:0;
     left:0;
     transform: translateX(100%);
-    transition: transform 0.35s ease;
+    transition: transform 0.35s ease, background-color 0.35s ease;
     padding: 0px 20px;
     box-sizing: border-box;
     &.show {
@@ -518,6 +530,25 @@ body {
         transform: translateY(-50%);
         color: transparent;
         transition: color 0.35s ease;
+      }
+    }
+    p {
+      border: 1px solid var(--local-color);
+      display: inline-block;
+      padding: 5px 10px;
+      transition: border 0.35s ease, color 0.35s ease, background-color 0.35s ease;
+      border-left-width: 0px;
+      cursor: pointer;
+      &:first-of-type {
+        border-left-width: 1px;
+        border-radius: 5px 0px 0px 5px;
+      }
+      &:last-of-type {
+        border-radius: 0px 5px 5px 0px;
+      }
+      &.active {
+        background-color: var(--local-color);
+        color: var(--sidebar-background);
       }
     }
   }

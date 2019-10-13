@@ -4,6 +4,18 @@ const settingsManifest = {
   },
 }
 
+let themeObj = ["light","auto","dark"];
+document.getElementById("theme-container").children[1].classList.add("active");
+Array.from(document.getElementById("theme-container").children).forEach((elem, index)=>{
+  elem.addEventListener("click", ()=>{
+    Array.from(document.getElementById("theme-container").children).forEach((elem, index)=>{
+      elem.classList.remove("active");
+    })
+    elem.classList.add("active");
+    settings.set("display.theme", themeObj[index]);
+  })
+})
+
 let settings = new Settings(settingsManifest);
 
 settings.listen("display.theme", (value)=>{
