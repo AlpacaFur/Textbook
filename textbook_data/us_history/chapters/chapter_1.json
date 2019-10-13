@@ -1,20 +1,19 @@
 {
-  "name":"North America Prior to European Arrival",
+  "name":"1: North America Prior to European Arrival",
   "content": [
     {"name":"North American Tribes", "content":[
       {"name":"Populations",
         "content":"The Native Americans living in North America were much more spread out than their South American counterparts. They were extremely diverse and each group adapted to survive in the environments they lived in. Because of these differences, clashes were not uncommon even though they maintained a generally similar tribal structure. A chief or group of elders typically made decisions for the tribe and while the chief was typically male, women usually selected and advised him. This is one expression of  gender roles not being as fixed in Native American society as in Europe.",
         "tags":["Native Americans","Population"]},
       {"name":"Agriculture",
-        "content":"%gourds.jpg|Gourds and squash were some of the many plants indiginous to the Americas% Native Americans also differed in which crops they grew. In general, on the Eastern Seaboard, where the English settlers first encountered them, they grew various crops, such as beans, squash, and corn, as well as participating in hunting and trapping.",
+        "content":"%gourds.jpg|Gourds and squash are some of the many plants indigenous to the Americas that were unfamiliar to the English settlers.% Native American tribes also differed in which crops they grew. In general, on the Eastern Seaboard, where the English settlers first encountered them, they grew various crops, such as beans, squash, and corn, as well as participating in hunting and trapping.",
         "detail":"The three crops corn, squash, and beans were called the \"three sisters\" because they were planted in such a way that each benefitied from the others' presence. The corn provided a platform for the beans to grow on, the beans enriched the soil, and the squash covered the ground, preventing the growth of weeds.",
-        "tags":["Native Americans","Agriculture"]}
+        "tags":["Native Americans","Food"]}
     ]},
     {"name":"Epidemic", "content":[
       {"name":"European Diseases",
-        "content":"This is a second test section",
-        "tags":["Native Americans","Population", "Disease"]},
-      {"content":"And with that, this preface is over."}
+        "content":"By the time English settlers arrived in what would become the United States, the Native American populations were already diminished by prevalent disease. They were greatly affected by diseases brought to the Americas by Europeans. They died in much greater numbers than the Europeans because they had not built up immunities to the diseases that the Europeans had been living among for centuries.",
+        "tags":["Native Americans","Population", "Disease"]}
     ]}
   ]
 }

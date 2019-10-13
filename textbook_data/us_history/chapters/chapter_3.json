@@ -1,0 +1,25 @@
+{
+  "name":"3: Resistance and Rebellion",
+  "content": [
+    {"name":"Navigation Acts", "content":[
+      {"name":"Regulating Trade",
+        "content":"The Navigation Acts required all exports from the colonies to be routed through England and be brought on British ships. This prevented the colonies from trading with anyone other than England, greatly reducing the opportunities availible to merchants. It also meant that even if other countries had better deals for the products, ",
+        "tags":["England"]},
+      {"name":"The Gaspee Affair",
+        "content":"The HMS Gaspee was a customs ship chasing another ship that was smuggling in goods for trade, when it ran aground on a shallow part of the bay. Rhode Island colonists were angered by the acts being enacted by the British, so as a sign of resistance they set fire to the Gaspee. This event preceded the Boston Tea Party by over a year and was one of several events that pushed the Thirteen Colonies towards independence.",
+        "tags":["England"]}
+    ]},
+    {"name":"Tea Act", "content":[
+      {"name":"East India Company","content":"ABC","tags":[]},
+      {"name":"Boston Tea Party","content":"123","tags":[]}
+    ]},
+    {"name":"Townshend Acts", "content":[
+      {"name":"Taxes","content":"ABC","tags":[]},
+      {"name":"Resistance","content":"123","tags":[]}
+    ]},
+    {"name":"Stamp Act", "content":[
+      {"name":"Direct Taxation","content":"ABC","tags":[]},
+      {"name":"Increased Tensions","content":"123","tags":[]}
+    ]}
+  ]
+}

@@ -3,11 +3,32 @@
   "id":"us_history",
   "chapters": {
     "0":"preface",
-    "1":"chapter_1"
+    "1":"chapter_1",
+    "2":"chapter_2",
+    "3":"chapter_3"
   },
   "chapter_names": {
     "0":"Preface",
-    "1":"North America Prior to European Arrival"
+    "1":"1: North America Prior to European Arrival",
+    "2":"2: English Settlement",
+    "3":"3: Resistance and Rebellion",
+    "4":"4: The American Revolition",
+    "5":"5: The Constitution and the New Republic",
+    "6":"6: The Jeffersonian Era",
+    "7":"7: America's Economic Revolution",
+    "8":"8: Cotton, Slavery, and the Old South",
+    "9":"9: The Civil War",
+    "10":"10: Reconstruction and the New South",
+    "11":"11: Industrial Revolution",
+    "12":"12: From Crisis to Empire",
+    "13":"13: America and the Great War",
+    "14":"14: The Great Depression",
+    "15":"15: The New Deal",
+    "16":"16: World War II",
+    "17":"17: The Cold War",
+    "18":"18: Civil Rights",
+    "19":"19: The Crisis of Authority",
+    "20":"20: The Age of Globalization"
   },
   "public":false
 }
